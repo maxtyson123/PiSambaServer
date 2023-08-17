@@ -1,0 +1,3 @@
+[submodule "lib/13_DGT_PYTHON"]
+	path = lib/external
+	url = https://github.com/maxtyson123/13_DGT_PYTHON
