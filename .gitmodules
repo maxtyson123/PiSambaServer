@@ -1,3 +1,4 @@
-[submodule "lib/13_DGT_PYTHON"]
-	path = lib/external
-	url = https://github.com/maxtyson123/13_DGT_PYTHON
+
+[submodule "PythonTools"]
+	path = PythonTools
+	url = https://github.com/maxtyson123/PythonTools
