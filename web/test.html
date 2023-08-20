@@ -1,0 +1,33 @@
+<!--suppress HtmlUnknownTag, HtmlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->mlUnknownTag -->
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Quiz Game UI (BETA)</title>
+  </head>
+  <body>
+
+  <div class="top-nav-bar center-items">
+     <h1>Quiz Game</h1>
+  </div>
+  <br>
+  <div class="close-button-container">
+    <p>Please use this to close &rarr;</p>
+    <button class="close-button" onclick="close_python_and_window()"><span>X</span></button>
+  </div>
+
+  <div class="quiz-container center-items">
+    <div class="quiz-game center-items">
+            <pre id="output"><p class="question-header"> Question <span class="colour-code-blue">1<span class="colour-code-reset"> of <span class="colour-code-blue">10<span class="colour-code-reset"></span></span></span></span> | User: <span class="colour-code-red">max<span class="colour-code-reset"></span></span> | Time Limit: <span class="colour-code-blue">10<span class="colour-code-reset"> seconds</span></span></p><h2 class="menu-title">What year was the game Team Fortress <span class="colour-code-blue">2<span class="colour-code-reset"> released?</span></span></h2><br><div class="menu-option"><button id="0" onclick="choose_item(this)"> <p class=" menu-item-main inline"><span class="colour-code-blue">2007<span class="colour-code-reset"></span></span></p><p class="menu-item-secondary inline"></p></button></div><br><div class="menu-option"><button id="1" onclick="choose_item(this)"> <p class=" menu-item-main inline"><span class="colour-code-blue">2010<span class="colour-code-reset"></span></span></p><p class="menu-item-secondary inline"></p></button></div><br><div class="menu-option"><button id="2" onclick="choose_item(this)"> <p class=" menu-item-main inline"><span class="colour-code-blue">2009<span class="colour-code-reset"></span></span></p><p class="menu-item-secondary inline"></p></button></div><br><div class="menu-option"><button id="3" onclick="choose_item(this)"> <p class=" menu-item-main inline"><span class="colour-code-blue">2005<span class="colour-code-reset"></span></span></p><p class="menu-item-secondary inline"></p></button></div><br></pre>
+    </div>
+    <div class="quiz-input-container">
+       <p class="inline" id="input_prompt">Choose an option (0-3) &gt; </p>
+       <input class="inline" type="text" placeholder="Enter choice here" id="input">
+    </div>
+  </div>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="./main.js"></script>
+
+</body></html>

@@ -1,0 +1,33 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Quiz Game UI | "</title>
+  </head>
+  <body>
+
+  <div class="top-nav-bar center-items">
+     <h1>Quiz Game</h1>
+  </div>
+  <br>
+
+  <div class="close-button-container">
+    <p>Please use this to close &rarr;</p>
+    <button class="close-button" onclick="close_python_and_window()"><span>X</span></button>
+  </div>
+
+  <div class="quiz-container center-items">
+    <div class="quiz-game center-items">
+            <pre id="output"></pre>
+    </div>
+    <div class="quiz-input-container">
+       <p class="inline" id="input_prompt">Choose an option (0-19) &gt; </p>
+       <input class="inline" type="text" placeholder="Enter choice here" id="input">
+    </div>
+  </div>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script src="./main.js"></script>
+
+</body></html>
