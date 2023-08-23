@@ -1,15 +1,15 @@
 
 :root {
     /* Default Colour Scheme */
-    --text-colour: whitesmoke;
+    --text-colour: #74a828;
     --font-weight: normal;
     --opacity: 1;
     --font-style: normal;
     --text-decoration: none;
     --animation: none;
     --filter: none;
-    --primary-color: #0B101A;
-    --secondary-colour: cornflowerblue;
+    --primary-color: #bb1141;
+    --secondary-colour: #74a828;
 }
 
 /*noinspection CssUnusedSymbol*/
@@ -101,12 +101,7 @@ body {
     font-size: 16px;
     margin: 0;
     padding: 0;
-    background: linear-gradient(355deg, #1c1e26, #4b4d56);
-    background-size: 400% 400%;
-
-    -webkit-animation: BackgroundAnim 54s ease infinite;
-    -moz-animation: BackgroundAnim 54s ease infinite;
-    animation: BackgroundAnim 54s ease infinite;
+    background: #1e1d1d;
 }
 
 button {
@@ -115,12 +110,12 @@ button {
 }
 
 .quiz-input-container {
+    display: none;
     list-style-type: none;
     text-align: center;
     width: 100%;
     background-color: #000000;
-    box-shadow: 2px 2px 5px floralwhite;
-    border-radius: 0 0 25px 25px;
+    box-shadow: 2px 2px 5px rgba(255, 250, 240, 0.42)
 }
 
 input:focus {
@@ -136,8 +131,9 @@ input:focus {
 
 .quiz-game {
     background-color: var(--primary-color);
-    box-shadow: 2px 2px 5px floralwhite;
-    border-radius: 25px 25px 0 0;
+    box-shadow: 2px 2px 5px rgba(255, 250, 240, 0.42);
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
 }
 
@@ -159,11 +155,16 @@ input:focus {
 
 .menu-option button{
     width: 100%;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.38);
     color: var(--text-colour);
+    border: 0px;
     border-radius: 10px;
     padding: 0 10px 0 10px;
     font-size: 18px;
+}
+.menu-option button:hover{
+    background-color: rgba(0, 0, 0, 0.48);
+    cursor: pointer;
 }
 
 .menu-item-main{
@@ -182,25 +183,31 @@ input:focus {
 }
 
 .top-nav-bar {
-    background: linear-gradient(269deg, #67c8ff, #003cb6, #0fd0c9, #0fd052);
-    background-size: 800% 800%;
-
-    -webkit-animation: TitleAnim 10s ease infinite;
-    -moz-animation: TitleAnim 10s ease infinite;
-    animation: TitleAnim 10s ease infinite;
+    background: linear-gradient(90deg, #74a828, #bb1141);
+    background-size: 50% 50%;
+    animation: TitleAnim 5s infinite;
     background-clip: text;
     -webkit-background-clip: text;
-    color: rgba(0, 0, 0, 0.1);
+
+
+    color: rgba(0, 0, 0, 0);
     font-size: 24px;
     font-weight: bold;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    align-items: center;
 }
 
-.center-items {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.top-nav-bar img{
+    width: 20%;
+    margin: 10%;
 }
+
+.top-nav-bar h1{
+    justify-self: end;
+}
+
 
 
 .inline {
@@ -218,63 +225,12 @@ input{
 }
 
 
-@-webkit-keyframes TitleAnim {
-    0% {
-        background-position: 0 51%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0 51%
-    }
-}
-
-@-moz-keyframes TitleAnim {
-    0% {
-        background-position: 0 51%
-    }
-    50% {
-        background-position: 100% 50%
-    }
-    100% {
-        background-position: 0 51%
-    }
-}
-
 @keyframes TitleAnim {
     0% {
         background-position: 0 51%
     }
-    50% {
+    100% {
         background-position: 100% 50%
-    }
-    100% {
-        background-position: 0 51%
-    }
-}
-
-@-webkit-keyframes BackgroundAnim {
-    0% {
-        background-position: 47% 0
-    }
-    50% {
-        background-position: 54% 100%
-    }
-    100% {
-        background-position: 47% 0
-    }
-}
-
-@-moz-keyframes BackgroundAnim {
-    0% {
-        background-position: 47% 0
-    }
-    50% {
-        background-position: 54% 100%
-    }
-    100% {
-        background-position: 47% 0
     }
 }
 

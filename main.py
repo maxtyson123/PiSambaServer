@@ -18,18 +18,21 @@ def main() -> None:
     # Loop until stopped
     while True:
         item_names = ["Refresh USBs", "Close Server"]
-        item_values = ["_Refresh Button", "_Quit Button"]
+        item_values = [
+                        '<i class="fa-solid fa-rotate" style="font-size: 24px"></i>',
+                        '<i class="fa-solid fa-circle-xmark" style="font-size: 24px"></i>'
+                      ]
 
         # Detect the USBs
         mounted_usbs = detect_usbs()
 
         # Add them after the refresh button
         for usb in mounted_usbs:
-            item_names.append(usb[0])
-            item_values.append(f"MOUNTED: {usb[1]}")
+            item_names.append(f"{usb[0]} | {usb[1]}")
+            item_values.append('<i class="fa-solid fa-eject" style="font-size: 24px"></i>')
 
         menu_items = [item_names, item_values]
-        main_menu = Menu(get_ip(), menu_items, True)
+        main_menu = Menu(f"SAMBA Server: {get_ip()}/RaspberryPI", menu_items, True)
 
         match main_menu.get_input():
             case _:
@@ -55,7 +58,9 @@ def init_main() -> None:
 if __name__ == "__main__":
     # Set up the program
     init_debug()
-    init_main()
+    #init_main()
+    #init_gui("192.168.3.1", 8080)
+
     init_gui()
 
     # Run the main program and catch the exit to stop the debug session
