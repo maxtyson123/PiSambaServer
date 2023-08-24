@@ -27,6 +27,7 @@ def detect_usbs() -> list:
             continue
 
         # Add the device to the list
+        debug_message(f"Found Device: {line_data[0]}")
         device_points.append(line_data[0])
 
     # GET THE MOUNT POINTS:
@@ -37,14 +38,14 @@ def detect_usbs() -> list:
         line_data = command_output[line_index].split(" ")
 
         # Remove all the elemts that are empty
-        if len(line_data) < 2:
-            continue
+        #if len(line_data) < 2:
+            #continue
 
         # Go through all the devices
         for device in device_points:
 
-            # If the device is in the line and the mount point is not empty then add it to the list
-            if device in line_data[0] and line_data[1] != "":
+            # If the device is in the line (but is not the device it self) and the mount point is not empty then add it to the list
+            if device in line_data[0] and device != line_data[0]:
                 mounted_usbs.append([line_data[0], line_data[1]])
 
     # DEBUG:
@@ -53,6 +54,8 @@ def detect_usbs() -> list:
 
     return mounted_usbs
 
+def check_mounted(mounted_usb: list) -> None:
+  return "/External" in mounted_usb[1]
 
 def unmount_usb(mounted_usb: list) -> None:
     """
@@ -62,8 +65,8 @@ def unmount_usb(mounted_usb: list) -> None:
     """
 
     # If the USB is not mounted then skip
-    if "/External/" not in mounted_usb[1]:
-        print(f"Usb: {mounted_usb[0]} is not mounted onto server, Skipping")
+    if not check_mounted(mounted_usb):
+        debug_message(f"Usb: {mounted_usb[0]} is not mounted onto server, Skipping")
         return
 
     # Unmount the USB
@@ -89,8 +92,8 @@ def mount_usb(mounted_usb: list) -> None:
 	"""
 
     # If the USB is already mounted then skip
-    if "/External/" in mounted_usb[1]:
-        print(f"Usb: {mounted_usb[0]} is already mounted onto server, Skipping")
+    if check_mounted(mounted_usb):
+        debug_message(f"Usb: {mounted_usb[0]} is already mounted onto server, Skipping")
         return
 
     # List the folders in the External folder and increment the index (e.g. 01/, 02/, 03/ so make 04/)
@@ -99,7 +102,7 @@ def mount_usb(mounted_usb: list) -> None:
 
     # Mount the USB
     os.system(f"sudo mkdir /External/0{usb_index}")
-    os.system(f"sudo mount /dev/{mounted_usb[0]} /External/0{usb_index}")
+    os.system(f"sudo mount -o rw,user,uid=1000,umask=007,exec /dev/{mounted_usb[0]} /External/0{usb_index}")
     debug_message(f"Mounted /dev/{mounted_usb[0]} to /External/0{usb_index}")
 
 
@@ -117,4 +120,4 @@ def clean_folders() -> None:
     """
     Cleans the folders in the External folder for the hosting of the USBs
     """
-    os.system("sudo rm -rf /External/*/")
+    os.system("find /External/ -type d -empty -delete")
