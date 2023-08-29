@@ -36,7 +36,7 @@ def main() -> None:
                 item_values.append('Click To Mount')
 
         menu_items = [item_names, item_values]
-        main_menu = Menu(f"SAMBA Server: {get_ip()}/RaspberryPI", menu_items, True)
+        main_menu = Menu(f"SAMBA Server: 192.168.3.1/RaspberryPI", menu_items, True)
         main_menu.time_limit = 1
         user_input = main_menu.get_input()
 
