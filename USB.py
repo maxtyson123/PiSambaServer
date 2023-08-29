@@ -37,10 +37,6 @@ def detect_usbs() -> list:
         # Split the commands
         line_data = command_output[line_index].split(" ")
 
-        # Remove all the elemts that are empty
-        #if len(line_data) < 2:
-            #continue
-
         # Go through all the devices
         for device in device_points:
 
@@ -98,7 +94,12 @@ def mount_usb(mounted_usb: list) -> None:
 
     # List the folders in the External folder and increment the index (e.g. 01/, 02/, 03/ so make 04/)
     folders = os.listdir("/External/")
-    usb_index = len(folders) + 1
+    usb_index = 0
+
+    # Find an unused index
+    while f"0{usb_index}" in folders:
+       debug_message(f"0{usb_index} in folder")
+       usb_index += 1
 
     # Mount the USB
     os.system(f"sudo mkdir /External/0{usb_index}")
@@ -121,3 +122,5 @@ def clean_folders() -> None:
     Cleans the folders in the External folder for the hosting of the USBs
     """
     os.system("find /External/ -type d -empty -delete")
+    command_output = os.popen('ls /External').read().split("\n")
+    debug_message(f"Folders Left: {', '.join(command_output)}")

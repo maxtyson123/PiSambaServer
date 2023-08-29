@@ -37,37 +37,57 @@ def main() -> None:
 
         menu_items = [item_names, item_values]
         main_menu = Menu(f"SAMBA Server: {get_ip()}/RaspberryPI", menu_items, True)
-
+        main_menu.time_limit = 1
         user_input = main_menu.get_input()
 
         # Check if the user refreshed the USBs or closed the server
         match user_input:
             case "Refresh USBs":
-                debug_message("Refreshing Usbs...")
+                debug_message("-= Refreshing Usbs... =-")
                 continue
 
             case "Close Server":
-                debug_message("Closing server...")
+                debug_message("-= Closing server... =-")
                 break
 
         # User must have selected a USB
 
-        # Fin the USB
-        for usb in mounted_usbs:
+        # Find the USB
+        if user_input is not None:
+         for usb in mounted_usbs:
 
             # Check if the device name is in the user input
             if usb[0] in user_input:
 
                 # If it is not mounted then mount the usb
                 if not check_mounted(usb):
-                   debug_message("Mounting USB...")
+                   debug_message("-= Mounting USB... =-")
                    mount_usb(usb)
                 else:
-                   debug_message("Unmounting USB...")
+                   debug_message("-= Unmounting USB... =-")
                    unmount_usb(usb)
                 break
+    # Once the server has closed write a message
+    closed_menu = Menu("Server Closed", [])
+    debug_message("Replaced main screen with closed screen")
+    closed_menu.show_menu()
+
+    # Stop the SMB server
+    os.system("sudo systemctl stop smbd")
+    debug_message("Stopped SMB server")
+
 
 def init_main() -> None:
+    # Make sure the server folder is not delted
+    os.system("sudo touch /External/.server")
+
+    # Start the SMB server
+    os.system("sudo systemctl start smbd")
+
+    # Create the program folder if it doesnt exist
+    if not os.path.exists("ProgramData"):
+      os.mkdir("ProgramData")
+
     # Detect the USBs
     mounted_usbs = detect_usbs()
 
@@ -82,6 +102,9 @@ def init_main() -> None:
 
     # Mount all the USBs
     mount_all(mounted_usbs)
+
+    # Log that the init is done
+    debug_message("-= Server Init Done =-")
 
     return
 
