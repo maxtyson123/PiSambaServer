@@ -103,7 +103,7 @@ def mount_usb(mounted_usb: list) -> None:
 
     # Mount the USB
     os.system(f"sudo mkdir /External/0{usb_index}")
-    os.system(f"sudo mount -o rw,user,uid=1000,umask=007,exec /dev/{mounted_usb[0]} /External/0{usb_index}")
+    os.system(f"sudo mount -o rw,users,umask=000,exec /dev/{mounted_usb[0]} /External/0{usb_index}")
     debug_message(f"Mounted /dev/{mounted_usb[0]} to /External/0{usb_index}")
 
 
